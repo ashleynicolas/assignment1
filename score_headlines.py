@@ -1,9 +1,7 @@
-import os
 import sys
-import time
-import numpy as mp
 from sentence_transformers import SentenceTransformer
 import joblib
+import datetime
 
 # score_headlines.py
 
@@ -24,8 +22,11 @@ clf = joblib.load('svm.joblib')
 
 scores = clf.predict(embeddings)
 
-OUTPUT_FILE = f"headlines"
-with(open)
+TODAY = datetime.datetime.today().strftime('%Y_%m_%d')
 
+OUTPUT_FILE = f"headline_scores_{SOURCE_NAME}_{TODAY}.txt"
+with open(output_name, 'w', encoding='utf-8') as output:
+    for score, headline in zip(scores, headlines):
+        output.write(f"{score}, {headline}")
 
-
+print(f"Output file saved as <OUTPUT_FILE>")
