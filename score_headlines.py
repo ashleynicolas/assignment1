@@ -6,7 +6,8 @@ import datetime
 # score_headlines.py
 
 if len(sys.argv) < 3:
-    print("ERROR: Missing parameter. Please include text file name and source name such as 'python score_headlines.py <TEXT_FILE> <SOURCE_NAME>")
+    print("ERROR: Missing parameter. Please include text file name and source name: 'python score_headlines.py <TEXT_FILE> <SOURCE_NAME>'")
+    print("EXAMPLE: python score_headlines.py nyt_headlines_today.txt nyt")
     sys.exit(1)
 
 TEXT_FILE = sys.argv[1]
