@@ -16,7 +16,7 @@ SOURCE_NAME = sys.argv[2]
 # Read in text file to create headline vectors for model classification
 with open(TEXT_FILE, 'r', encoding="utf-8") as file:
     headlines = file.readlines()
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("/opt/huggingface_models/all-MiniLM-L6-v2")
 embeddings = model.encode(headlines)
 
 # Load in trained SVM model to classify headline based on vector embeddings
