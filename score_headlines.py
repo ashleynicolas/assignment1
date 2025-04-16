@@ -25,7 +25,7 @@ scores = clf.predict(embeddings)
 TODAY = datetime.datetime.today().strftime('%Y_%m_%d')
 
 OUTPUT_FILE = f"headline_scores_{SOURCE_NAME}_{TODAY}.txt"
-with open(output_name, 'w', encoding='utf-8') as output:
+with open(OUTPUT_FILE, 'w', encoding='utf-8') as output:
     for score, headline in zip(scores, headlines):
         output.write(f"{score}, {headline}")
 
