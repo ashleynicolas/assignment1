@@ -31,4 +31,4 @@ with open(OUTPUT_FILE, 'w', encoding='utf-8') as output:
     for score, headline in zip(scores, headlines):
         output.write(f"{score}, {headline}")
 
-print(f"Output file saved as <OUTPUT_FILE>")
+print(f"Output file saved as {OUTPUT_FILE}")
