@@ -1,4 +1,4 @@
-# This python script takes in text files and uses and SVM model to assign sentiment scores for headlines.
+"""This script takes in text files and uses an SVM model to assign sentiment scores to headlines."""
 import sys
 import datetime
 import joblib
