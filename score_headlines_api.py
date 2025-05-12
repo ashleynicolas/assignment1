@@ -36,3 +36,12 @@ def score_headlines(headlines: List[str]) -> Dict[str, List[str]]:
         return {'labels':scores.tolist()}
     except Exception as e:
         logger.error("Error scoring headlines")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "score_headlines_api:app",
+        host="127.0.0.1",
+        port=8082,
+        reload=True
+    )
