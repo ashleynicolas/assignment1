@@ -16,7 +16,6 @@ logger = logging.getLogger(__name__)
 try:
     model = SentenceTransformer("/opt/huggingface_models/all-MiniLM-L6-v2")
     clf = joblib.load('svm.joblib')
-
 except Exception as e:
     logger.critical("Unable to load model.")
 
@@ -32,4 +31,4 @@ def score_headlines(headlines: List[str]):
         scores = clf.predict(embeddings)
         return {'labels':scores}
     except Exception as e:
-        logging.error("Error scoring headlines")
+        logger.error("Error scoring headlines")
