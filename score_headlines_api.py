@@ -36,4 +36,4 @@ def score_headlines(headlines: List[str]):
         logging.error("Error scoring headlines")
 
 if __name__=="__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8082, reload=True)
+    uvicorn.run(score_headlines_api:app, host="127.0.0.1", port=8082, reload=True)
