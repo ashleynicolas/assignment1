@@ -4,6 +4,7 @@ from sentence_transformers import SentenceTransformer
 from fastapi import FastAPI
 import logging
 from typing import Dict, List
+import uvicorn
 
 app = FastAPI()
 logging.basicConfig(
@@ -34,3 +35,5 @@ def score_headlines(headlines: List[str]):
     except Exception as e:
         logging.error("Error scoring headlines")
 
+if __name__=="__main__":
+    uvicorn.run(app, host="127.0.0.1", port =8082)
