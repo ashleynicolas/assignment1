@@ -1,9 +1,9 @@
 """Script creates an API that clients can use to get headline sentiment scores"""
-import joblib
 import logging
 from typing import Dict, List
 from sentence_transformers import SentenceTransformer
 from fastapi import FastAPI, HTTPException
+import joblib
 
 app = FastAPI()
 logging.basicConfig(
@@ -33,6 +33,6 @@ def score_headlines(headlines: List[str]) -> Dict[str, List[str]]:
     try:
         embeddings = model.encode(headlines)
         scores = clf.predict(embeddings)
-        return {'labels':scores}
+        return {'labels':scores.tolist()}
     except Exception as e:
         logger.error("Error scoring headlines")
