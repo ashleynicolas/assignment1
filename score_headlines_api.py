@@ -1,9 +1,9 @@
 """Script creates an API that clients can use to get headline sentiment scores"""
 import joblib
-from sentence_transformers import SentenceTransformer
-from fastapi import FastAPI, HTTPException
 import logging
 from typing import Dict, List
+from sentence_transformers import SentenceTransformer
+from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 logging.basicConfig(
@@ -21,11 +21,13 @@ except Exception as e:
 
 @app.get('/status')
 def status() -> Dict[str, str]:
+    """ Returns OK status to check connection"""
     d = {'status':'OK'}
     return d
 
 @app.post('/score_headlines')
 def score_headlines(headlines: List[str]) -> Dict[str, List[str]]:
+    """ Returns label scoring for headlines """
     if not headlines:
         raise HTTPException(400, "`headlines` must be a non-empty list")
     try:
