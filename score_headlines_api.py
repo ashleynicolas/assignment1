@@ -1,9 +1,7 @@
-"""This script takes in text files and uses an SVM model to assign sentiment scores to headlines."""
-import sys
-import datetime
+"""Script creates an API that clients can use to get headline sentiment scores"""
 import joblib
 from sentence_transformers import SentenceTransformer
-import requests
+from fastapi import FastAPI
 import logging
 from typing import Dict, List
 
@@ -16,12 +14,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 try:
-    logger.info("Loading Sentence Transformer model...")
     model = SentenceTransformer("/opt/huggingface_models/all-MiniLM-L6-v2")
-    logger.info("Sentence Transformer model loaded.")
-    logger.info("Loading SVM model...")
     clf = joblib.load('svm.joblib')
-    logger.info("SVM Model loaded.")
 
 except Exception as e:
     logger.critical("Unable to load model.")
@@ -36,7 +30,7 @@ def score_headlines(headlines: List[str]):
     try:
         embeddings = model.encode(headlines)
         scores = clf.predict(embeddings)
-        return scores
+        return {'labels':scores}
     except Exception as e:
         logging.error("Error scoring headlines")
 
