@@ -20,7 +20,7 @@ except Exception as e:
     logger.critical("Unable to load model.")
 
 @app.get('/status')
-def status() -> Dict[str, str]:
+def status():
     d = {'status':'OK'}
     return d
 
