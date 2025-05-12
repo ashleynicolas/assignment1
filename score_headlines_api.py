@@ -1,7 +1,7 @@
 """Script creates an API that clients can use to get headline sentiment scores"""
 import joblib
 from sentence_transformers import SentenceTransformer
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import logging
 from typing import Dict, List
 
@@ -20,12 +20,14 @@ except Exception as e:
     logger.critical("Unable to load model.")
 
 @app.get('/status')
-def status():
+def status() -> Dict[str, str]:
     d = {'status':'OK'}
     return d
 
 @app.post('/score_headlines')
-def score_headlines(headlines: List[str]):
+def score_headlines(headlines: List[str]) -> Dict[str, List[str]]:
+    if not headlines:
+        raise HTTPException(400, "`headlines` must be a non-empty list")
     try:
         embeddings = model.encode(headlines)
         scores = clf.predict(embeddings)
