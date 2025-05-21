@@ -1,6 +1,6 @@
 """Script creates a Streamlit app to interact with headline scoring API"""
 import requests
-import Streamlit as st
+import streamlit as st
 
 st.title("Headline Sentiment Analyzer")
 
@@ -26,6 +26,5 @@ if st.button("Score Headlines"):
         response = requests.post(url = "http://127.0.0.1:8082/score_headlines", json=st.session_state.headlines)
         scores = response.json().get()
         st.markdown(scores)
-
 
 
