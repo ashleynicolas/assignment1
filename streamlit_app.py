@@ -14,9 +14,10 @@ def delete_headline():
     if len(st.session_state.headlines) > 1:
         st.session_state.headlines.pop()
 
-st.session_state.headlines[idx] = st.text_input("Please enter your headline here", 
-                                                value = st.session_state.headlines[idx],
-                                                key = f"Headlines_{idx+1}")
+for idx in range(len(st.session_state.headlines)):
+    st.session_state.headlines[idx] = st.text_input("Please enter your headline here", 
+                                                    value = st.session_state.headlines[idx],
+                                                    key = f"Headlines_{idx+1}")
 
 col1, col2 = st.columns(2)
 
