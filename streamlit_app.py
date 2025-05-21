@@ -16,7 +16,7 @@ def delete_headline():
     if len(st.session_state["headlines"]) > 1:
         st.session_state["headlines"].pop()
 
-def score_headlines()
+def score_headlines():
         headlines = [headline for headline in st.session_state.headlines]
         response = requests.post(url = "http://127.0.0.1:8082/score_headlines", json=headlines)
         scores = response.json().get("Sentiment Scores",[])
