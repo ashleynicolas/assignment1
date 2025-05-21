@@ -5,7 +5,7 @@ import streamlit as st
 st.title("Headline Sentiment Analyzer")
 
 if "headlines" not in st.session_state:
-    st.session_state.headlines=[""]
+    st.session_state["headlines"]=[""]
 if "scores" not in st.session_state:
      st.session_state["scores"] = []
 
@@ -17,15 +17,20 @@ def delete_headline():
         st.session_state["headlines"].pop()
 
 def score_headlines():
-        headlines = [headline for headline in st.session_state.headlines]
         response = requests.post(url = "http://127.0.0.1:8082/score_headlines", json=headlines)
-        scores = response.json().get("Sentiment Scores",[])
+        response.raise_for_status()
+        data = response.json()
+        scores = data.get("scores", [])
         st.session_state["scores"] = list(zip(headlines, scores))
 
+headlines=[]
 for idx in range(len(st.session_state["headlines"])):
-    st.session_state.headlines[idx] = st.text_input("Please enter your headline here", 
-                                                    value = st.session_state["headlines"][idx],
-                                                    key = f"Headlines_{idx+1}")
+    val = st.text_input("Please enter your headline here:",
+                        value = st.session_state["headlines"][idx],
+                        key = f"Headlines_{idx+1}")
+    st.session_state["headlines"][idx] = val
+    if val.strip():
+         headlines.append(val)
 
 col1, col2 = st.columns(2)
 with col1:
