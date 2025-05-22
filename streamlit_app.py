@@ -30,7 +30,7 @@ with col2:
 
 with col3:
     if st.button("Score Headlines"):
-        headline_list = [i for i in st.session_state.headline if h.strip()]
+        headline_list = [i for i in st.session_state.headlines if i.strip()]
         if not headline_list:
                 st.warning("Please add a headline before scoring.")
         else:
