@@ -41,7 +41,9 @@ with col3:
             st.warning("Please add a headline before scoring.")
         else:
             try:
-                response = requests.post(url = "http://127.0.0.1:8082/score_headlines", json=headline_list, timeout=10)
+                response = requests.post(url = "http://127.0.0.1:8082/score_headlines",
+                                         json=headline_list,
+                                         timeout=10)
                 response.raise_for_status()
                 data = response.json()
                 st.session_state.scores = data.get("labels", [])
