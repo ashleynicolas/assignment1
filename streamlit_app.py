@@ -36,7 +36,9 @@ with col2:
 # Sends the headlines to the server to be scored when a user clicks the "Score Headlines" button
 with col3:
     if st.button("Score Headlines", type="primary"):
+        # Removes any empty/blank entries from the headline list
         headline_list = [i for i in st.session_state.headlines if i.strip()]
+        # If the list is empty, users are prompted to add headlines prior to scoring
         if not headline_list:
             st.warning("Please add a headline before scoring.")
         else:
@@ -53,6 +55,6 @@ with col3:
 
 # Displays the sentiment scores for each headline
 if st.session_state["scores"]:
-    st.markdown("# Scores:")
+    st.markdown("## Scores:")
     for headline,score in zip(headline_list, st.session_state.scores):
         st.markdown(f"**{headline}:** *{score}*")
