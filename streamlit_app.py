@@ -44,6 +44,6 @@ with col3:
                 st.session_state.scores = []
 
 if st.session_state["scores"]:
-     st.markdown("#Scores:")
+     st.markdown("# Scores:")
      for headline,score in zip(headline_list, st.session_state.scores):
-          st.markdown(f"###{headline}: **{score}")
+          st.markdown(f"## {headline}: **{score}**")
